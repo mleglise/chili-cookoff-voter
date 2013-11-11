@@ -11,6 +11,8 @@
 ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
+FACEBOOK_KEY: Your_OmniAuth_Provider_Key
+FACEBOOK_SECRET: Your_OmniAuth_Provider_Secret
 GOOGLE_KEY: Your_OmniAuth_Provider_Key
 GOOGLE_SECRET: Your_OmniAuth_Provider_Secret
 ROLES: [admin, user, VIP]
