@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   rolify
-  attr_accessible :role_ids, :as => :admin
-  attr_accessible :provider, :uid, :name, :email
   validates_presence_of :name
+
+  # Commented out because not working in Rails 4
+  # attr_accessible :role_ids, :as => :admin
+  # attr_accessible :provider, :uid, :name, :email
 
   def self.create_with_omniauth(auth)
     create! do |user|
