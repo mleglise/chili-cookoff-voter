@@ -1,4 +1,11 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+<% if @event %>
+  <h1><%= @event.title %></h1>
+
+<% else %>
+  <h1>Get started!</h1>
+  <% if can :create, Event %>
+    <%= link_to 'Create an Event', new_event_path %>
+  <% else %>
+    <%= link_to 'Login', signin_path %>
+  <% end %>
 <% end %>
