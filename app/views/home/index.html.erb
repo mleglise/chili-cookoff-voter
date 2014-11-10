@@ -3,7 +3,7 @@
 
 <% else %>
   <h1>Get started!</h1>
-  <% if can :create, Event %>
+  <% if can? :create, Event %>
     <%= link_to 'Create an Event', new_event_path %>
   <% else %>
     <%= link_to 'Login', signin_path %>
