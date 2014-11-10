@@ -1,0 +1,35 @@
+<h1><%= event.title %></h1>
+
+<% if can? :edit, event %>
+  <%= link_to 'Edit', edit_event_path(event) %> |
+  <%= link_to 'Back', events_path %>
+<% end %>
+
+<% if event.description.present? %>
+<p>
+  <%= event.description %>
+</p>
+<% end %>
+
+<p>
+  <strong>Event date:</strong>
+  <%= event.event_date %>
+</p>
+
+<p>
+  <strong>Polls open:</strong>
+  <%= event.polls_open %>
+</p>
+
+<p>
+  <strong>Polls close:</strong>
+  <%= event.polls_close %>
+</p>
+
+<div>
+  <h2>Are you here with an entry?</h2>
+  <form>
+  <a href="" class="btn btn-success">Yes! I'm a Chef!</a>
+  <a href="" class="btn btn-info">No, but my belly is hungry!</a>
+  </form>
+</div>

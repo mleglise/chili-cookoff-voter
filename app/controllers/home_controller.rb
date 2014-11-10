@@ -4,7 +4,6 @@ class HomeController < ApplicationController
       redirect_to :signin and return
     end
 
-    @users = User.all
     @event = Event.first
   end
 end

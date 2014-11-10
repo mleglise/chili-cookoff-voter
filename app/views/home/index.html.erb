@@ -1,5 +1,5 @@
 <% if @event %>
-  <h1><%= @event.title %></h1>
+  <%= render partial: 'events/show', locals: { event: @event } %>
 
 <% else %>
   <h1>Get started!</h1>
