@@ -4,4 +4,6 @@ class Attendance < ActiveRecord::Base
     foreign_key: 'user_id'
 
   belongs_to :event
+
+  validates_uniqueness_of :user_id, scope: :event_id
 end

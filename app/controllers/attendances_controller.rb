@@ -11,6 +11,7 @@ class AttendancesController < ApplicationController
   # GET /attendances/1
   # GET /attendances/1.json
   def show
+    redirect_to @event and return
   end
 
   # GET /attendances/new
@@ -34,7 +35,7 @@ class AttendancesController < ApplicationController
         format.html { redirect_to @event, notice: 'Your officially here!' }
         format.json { render action: 'show', status: :created, location: @event }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to @event }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
     end
