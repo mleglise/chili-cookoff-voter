@@ -11,25 +11,41 @@
 </p>
 <% end %>
 
-<p>
-  <strong>Event date:</strong>
-  <%= event.event_date %>
-</p>
+<div class="row">
+  <div class="col-sm-9">
+    <% if event.has_attendee?(current_user) %>
+      You're in!
+      <%= current_user.id %>
+    <% else %>
+      <div>
+        <h2>Are you here with an entry?</h2>
+        <%= render partial: 'attendances/form', locals:{ event: event, gtype: 'chef' } %>
+        <%= render partial: 'attendances/form', locals:{ event: event, gtype: 'eater' } %>
+      </div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Polls open:</strong>
-  <%= event.polls_open %>
-</p>
+  <div class="col-sm-3">
+    <p>
+      <strong>Event date:</strong>
+      <%= event.event_date %>
+    </p>
 
-<p>
-  <strong>Polls close:</strong>
-  <%= event.polls_close %>
-</p>
+    <p>
+      <strong>Polls open:</strong>
+      <%= event.polls_open %>
+    </p>
 
-<div>
-  <h2>Are you here with an entry?</h2>
-  <form>
-  <a href="" class="btn btn-success">Yes! I'm a Chef!</a>
-  <a href="" class="btn btn-info">No, but my belly is hungry!</a>
-  </form>
+    <p>
+      <strong>Polls close:</strong>
+      <%= event.polls_close %>
+    </p>
+
+    <% if can? :edit, event %>
+      <h3>Guest List</h3>
+      <% event.guests.each do |guest| %>
+        <%= guest.name %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,6 +1,11 @@
 ChiliCookoffVoter::Application.routes.draw do
+
   root :to => "home#index"
-  resources :events
+
+  resources :events do
+    resources :attendances
+  end
+
   resources :users, :only => [:index, :show, :edit, :update ]
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin

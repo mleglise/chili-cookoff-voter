@@ -1,0 +1,11 @@
+<%= form_for([event, Attendance.new(guest_type: gtype)]) do |f| %>
+  <%= f.hidden_field :guest_type %>
+
+  <div class="form-actions">
+    <% if gtype == 'chef' %>
+      <%= f.button :submit, class: 'btn btn-success' do %>Yes! I'm a Chef!<% end %>
+    <% elsif gtype == 'eater' %>
+      <%= f.button :submit, class: 'btn btn-info' do %>No, but my belly is hungry!<% end %>
+    <% end %>
+  </div>
+<% end %>
