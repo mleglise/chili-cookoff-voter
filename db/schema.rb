@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113054333) do
+ActiveRecord::Schema.define(version: 20141110055253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,26 @@ ActiveRecord::Schema.define(version: 20131113054333) do
     t.datetime "updated_at"
   end
 
+  create_table "categories", force: true do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "entries", force: true do |t|
+    t.string   "name"
+    t.integer  "owner_id"
+    t.integer  "event_id"
+    t.integer  "category_id"
+    t.boolean  "has_meat"
+    t.integer  "spice_level"
+    t.string   "ingredients"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -32,6 +52,14 @@ ActiveRecord::Schema.define(version: 20131113054333) do
     t.datetime "polls_open"
     t.datetime "polls_close"
     t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ratings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "entry_id"
+    t.decimal  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

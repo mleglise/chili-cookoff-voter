@@ -1,6 +1,17 @@
 Chili Cookoff Voter
 ========================
 
+To Do
+-----
+
+* Category form
+* Entry form
+* Rating form
+* Totals view
+
+
+
+
 This application was generated with the rails_apps_composer gem:
 https://github.com/RailsApps/rails_apps_composer
 provided by the RailsApps Project:

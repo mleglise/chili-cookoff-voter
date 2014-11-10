@@ -4,6 +4,9 @@ ChiliCookoffVoter::Application.routes.draw do
 
   resources :events do
     resources :attendances
+    resources :categories
+    resources :entries
+    resources :ratings
   end
 
   resources :users, :only => [:index, :show, :edit, :update ]
