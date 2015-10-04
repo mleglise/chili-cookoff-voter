@@ -1,37 +1,39 @@
 <h1>Listing events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Event date</th>
-      <th>Polls open</th>
-      <th>Polls close</th>
-      <th>Owner</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.event_date %></td>
-        <td><%= event.polls_open %></td>
-        <td><%= event.polls_close %></td>
-        <td><%= event.owner_id %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Event date</th>
+        <th>Polls open</th>
+        <th>Polls close</th>
+        <th>Owner</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.title, event %></td>
+          <td><%= event.description %></td>
+          <td><%= event.event_date %></td>
+          <td><%= event.polls_open %></td>
+          <td><%= event.polls_close %></td>
+          <td><%= event.owner.try(:name) %></td>
+          <% if can?(:edit, event) %>
+            <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <% end %>
+          <% if can?(:destroy, event) %>
+            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_event_path, class: 'btn btn-default' %>
