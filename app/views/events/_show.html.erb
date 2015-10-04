@@ -20,8 +20,6 @@
       <% else %>
         EATER
       <% end %>
-      You're in!
-      <%= current_user.id %>
     <% else %>
       <div>
         <h2>Are you here with an entry?</h2>
@@ -54,6 +52,10 @@
   </div>
 
   <div class="col-sm-3">
+    <p class="help-block">
+      User ID: <strong><%= current_user.try(:id) %></strong><br>
+      Type: <strong><%= event.find_attendee(current_user).try(:guest_type).try(:capitalize) %></strong>
+    </p>
     <p>
       <strong>Event date:</strong>
       <%= event.event_date %>

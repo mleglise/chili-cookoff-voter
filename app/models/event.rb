@@ -14,6 +14,10 @@ class Event < ActiveRecord::Base
     order(event_date: :desc)
   end
 
+  def find_attendee(user)
+    attendances.where(guest: user).first
+  end
+
   # Returns true if the user is attending the event
   def has_attendee?(user)
     !user.nil? && guests.exists?(user)
