@@ -1,0 +1,39 @@
+<h1>Listing entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Event</th>
+      <th>Category</th>
+      <th>Has meat</th>
+      <th>Spice level</th>
+      <th>Ingredients</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.name %></td>
+        <td><%= entry.owner_id %></td>
+        <td><%= entry.event_id %></td>
+        <td><%= entry.category_id %></td>
+        <td><%= entry.has_meat %></td>
+        <td><%= entry.spice_level %></td>
+        <td><%= entry.ingredients %></td>
+        <td><%= entry.description %></td>
+        <td><%= link_to 'Show', entry %></td>
+        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entry', new_entry_path %>

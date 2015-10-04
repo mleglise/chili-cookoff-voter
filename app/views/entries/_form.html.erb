@@ -1,0 +1,20 @@
+<%= simple_form_for([@event, @entry]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, hint: 'What do we call this thing?' %>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :has_meat %> Is there MEAT in it?
+      </label>
+    </div>
+    <%= f.association :category %>
+    <%= f.input :spice_level, collection: 1..10, hint: 'Use the Thai spice range 1 to 10.' %>
+    <%= f.input :ingredients, hint: 'What types of meat? Any allergens?' %>
+    <%= f.input :description, hint: '(optional) Anything cool we should know about your dish?' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-success' %>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entry.name %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @entry.owner_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @entry.event_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @entry.category_id %>
+</p>
+
+<p>
+  <strong>Has meat:</strong>
+  <%= @entry.has_meat %>
+</p>
+
+<p>
+  <strong>Spice level:</strong>
+  <%= @entry.spice_level %>
+</p>
+
+<p>
+  <strong>Ingredients:</strong>
+  <%= @entry.ingredients %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @entry.description %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', event_path(@event) %>

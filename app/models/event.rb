@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
     :through => :attendances
 
   has_many :categories
+  has_many :entries
 
   def self.newest
     order(event_date: :desc)

@@ -1,26 +1,38 @@
 <h1><%= event.title %></h1>
 
-<% if can? :edit, event %>
-  <%= link_to 'Edit', edit_event_path(event) %> |
-  <%= link_to 'Back', events_path %>
-<% end %>
-
-<% if event.description.present? %>
 <p>
   <%= event.description %>
+
+  <% if can? :edit, event %>
+    <%= link_to 'Edit', edit_event_path(event) %>
+  <% end %>
 </p>
-<% end %>
 
 <div class="row">
   <div class="col-sm-9">
     <% if event.has_attendee?(current_user) %>
       <% if event.has_chef?(current_user) %>
-        <%#= render partial: 'entries/show', locals: { event: event } %>
-        CHEF
-      <% else %>
-        EATER
+        <% if current_user.dishes_for(event) %>
+          <h3>Your Entries</h3>
+          <% current_user.dishes_for(event).each do |entry| %>
+            <ul>
+              <li><%= link_to entry.name, edit_event_entry_path(event, entry) %></li>
+            </ul>
+          <% end %>
+          <%= link_to 'Add another Dish', new_event_entry_path(event), class: 'btn btn-default btn-sm' %>
+        <% else %>
+          <%= link_to 'Add your Dish', new_event_entry_path(event), class: 'btn btn-success' %>
+        <% end %>
       <% end %>
+
+      <h2>Eat Now. Rank as you go.</h2>
+      <% event.entries.each do |entry| %>
+        <strong><%= entry.name %></strong><br>
+        by <%= entry.owner.name %>
+      <% end %>
+
     <% else %>
+      <!-- Logged in, but not yet Attending -->
       <div>
         <h2>Are you here with an entry?</h2>
         <div class="row">
@@ -54,7 +66,7 @@
   <div class="col-sm-3">
     <p class="help-block">
       User ID: <strong><%= current_user.try(:id) %></strong><br>
-      Type: <strong><%= event.find_attendee(current_user).try(:guest_type).try(:capitalize) %></strong>
+      Type: <strong><%= current_user.guest_type_for(event).try(:capitalize) %></strong>
     </p>
     <p>
       <strong>Event date:</strong>
