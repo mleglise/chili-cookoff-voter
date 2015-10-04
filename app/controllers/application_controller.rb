@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
   helper_method :correct_user?
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_event
+      @event = Event.find(params[:event_id])
+    end
+
     def current_user
       begin
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -26,7 +31,7 @@ class ApplicationController < ActionController::Base
 
     def authenticate_user!
       if !current_user
-        redirect_to root_url, :alert => 'You need to sign in for access to this page.'
+        redirect_to signin_url, :alert => 'You need to sign in first.'
       end
     end
 
