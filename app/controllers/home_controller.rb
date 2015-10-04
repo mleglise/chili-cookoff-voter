@@ -4,6 +4,6 @@ class HomeController < ApplicationController
       redirect_to :signin and return
     end
 
-    @event = Event.first
+    @event = Event.newest.first
   end
 end

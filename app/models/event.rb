@@ -8,7 +8,17 @@ class Event < ActiveRecord::Base
     :class_name => 'User',
     :through => :attendances
 
+  def self.newest
+    order(event_date: :desc)
+  end
+
+  # Returns true if the user is attending the event
   def has_attendee?(user)
     !user.nil? && guests.exists?(user)
+  end
+
+  # Returns true if the user is attending as a chef
+  def has_chef?(user)
+    has_attendee?(user) && attendances.exists?(user_id: user.id, guest_type: 'chef')
   end
 end
