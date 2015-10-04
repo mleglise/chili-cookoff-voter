@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
     :class_name => 'User',
     :through => :attendances
 
+  has_many :categories
+
   def self.newest
     order(event_date: :desc)
   end
