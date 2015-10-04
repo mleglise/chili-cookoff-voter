@@ -13,23 +13,37 @@
     <% if event.has_attendee?(current_user) %>
       <% if event.has_chef?(current_user) %>
         <% if current_user.dishes_for(event) %>
-          <h3>Your Entries</h3>
-          <% current_user.dishes_for(event).each do |entry| %>
-            <ul>
-              <li><%= link_to entry.name, edit_event_entry_path(event, entry) %></li>
-            </ul>
-          <% end %>
-          <%= link_to 'Add another Dish', new_event_entry_path(event), class: 'btn btn-default btn-sm' %>
+          <div class="well">
+            <h4 style="margin-top: 0">Your Entries:
+              <small>
+                <%= current_user.dishes_for(event).map {|entry| link_to entry.name, edit_event_entry_path(event, entry) }.join(', ').html_safe %>
+              </small>
+            </h4>
+            <%= link_to 'Add another Dish', new_event_entry_path(event), class: 'btn btn-default btn-sm' %>
+          </div>
         <% else %>
           <%= link_to 'Add your Dish', new_event_entry_path(event), class: 'btn btn-success' %>
         <% end %>
       <% end %>
 
       <h2>Eat Now. Rank as you go.</h2>
-      <% event.entries.each do |entry| %>
-        <strong><%= entry.name %></strong><br>
-        by <%= entry.owner.name %>
-      <% end %>
+      <div class="row">
+        <% event.categories.each do |cat| %>
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"><%= cat.name.gsub('Best ', '') %></h4>
+              </div>
+              <div class="panel-body">
+                <% cat.entries.each do |entry| %>
+                  <strong><%= entry.name %></strong><br>
+                  by <%= entry.owner.name %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
 
     <% else %>
       <!-- Logged in, but not yet Attending -->
@@ -49,7 +63,7 @@
     <% if can? :edit, event %>
       <div class="well" style="margin-top: 20px">
         <% if event.categories.present? %>
-          <h4>Manage Categories</h4>
+          <h4 style="margin-top: 0">Admin: Manage Categories</h4>
           <ul>
             <% event.categories.each do |cat| %>
               <li><%= link_to cat.name, edit_event_category_path(event, cat) %></li>
