@@ -14,13 +14,25 @@
 <div class="row">
   <div class="col-sm-9">
     <% if event.has_attendee?(current_user) %>
+      <% if event.has_chef?(current_user) %>
+        <%#= render partial: 'entries/show', locals: { event: event } %>
+        CHEF
+      <% else %>
+        EATER
+      <% end %>
       You're in!
       <%= current_user.id %>
     <% else %>
       <div>
         <h2>Are you here with an entry?</h2>
-        <%= render partial: 'attendances/form', locals:{ event: event, gtype: 'chef' } %>
-        <%= render partial: 'attendances/form', locals:{ event: event, gtype: 'eater' } %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= render partial: 'attendances/form', locals: { event: event, gtype: 'chef' } %>
+          </div>
+          <div class="col-sm-6">
+            <%= render partial: 'attendances/form', locals: { event: event, gtype: 'eater' } %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
@@ -44,6 +56,9 @@
     <% if can? :edit, event %>
       <h3>Guest List</h3>
       <% event.guests.each do |guest| %>
+        <% if event.has_chef?(guest) %>
+          <i class="fa fa-coffee"></i>
+        <% end %>
         <%= guest.name %>
       <% end %>
     <% end %>
