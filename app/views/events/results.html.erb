@@ -8,7 +8,7 @@
           <h4 class="panel-title"><%= cat.name.gsub('Best ', '') %></h4>
         </div>
         <div class="panel-body">
-          <% cat.entries.each do |entry| %>
+          <% cat.entries.sort_by {|entry| -1 * entry.avg_score }.each do |entry| %>
             <div class="entry-results">
               <strong><%= entry.name %></strong>
               <span class="text-primary"><%= entry.avg_score %></span><br>

@@ -17,6 +17,8 @@ class Entry < ActiveRecord::Base
   end
 
   def avg_score
-    total_score / valid_ratings.count rescue 0
+    @avg_score ||= total_score / valid_ratings.count
+    @avg_score = 0.0 if @avg_score.nan?
+    @avg_score
   end
 end
