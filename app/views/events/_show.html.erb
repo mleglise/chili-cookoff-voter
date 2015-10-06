@@ -41,33 +41,31 @@
     <% end %>
   </div>
 
-  <div class="col-sm-3">
-    <% if can? :edit, event %>
+  <% if can? :edit, event %>
+    <div class="col-sm-3">
       <div class="well">
         <%= link_to 'View Results', results_event_path(event) %> |
         <%= link_to 'Edit', edit_event_path(event) %>
       </div>
-    <% end %>
-    <p class="help-block">
-      User ID: <strong><%= current_user.try(:id) %></strong><br>
-      Type: <strong><%= current_user.guest_type_for(event).try(:capitalize) %></strong>
-    </p>
-    <p>
-      <strong>Event date:</strong>
-      <%= event.event_date %>
-    </p>
+      <p class="help-block">
+        User ID: <strong><%= current_user.try(:id) %></strong><br>
+        Type: <strong><%= current_user.guest_type_for(event).try(:capitalize) %></strong>
+      </p>
+      <p>
+        <strong>Event date:</strong>
+        <%= event.event_date %>
+      </p>
 
-    <p>
-      <strong>Polls open:</strong>
-      <%= event.polls_open %>
-    </p>
+      <p>
+        <strong>Polls open:</strong>
+        <%= event.polls_open %>
+      </p>
 
-    <p>
-      <strong>Polls close:</strong>
-      <%= event.polls_close %>
-    </p>
-
-    <% if can? :edit, event %>
+      <p>
+        <strong>Polls close:</strong>
+        <%= event.polls_close %>
+      </p>
+  
       <h3>Guest List</h3>
       <% event.guests.each do |guest| %>
         <% if event.has_chef?(guest) %>
