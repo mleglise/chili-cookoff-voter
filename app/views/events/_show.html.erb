@@ -5,7 +5,7 @@
       <% if event.has_chef?(current_user) %>
         <% if current_user.dishes_for(event) %>
           <div class="well">
-            <h4 style="margin-top: 0">Your Entries:
+            <h4 style="margin-top: 0">Edit Your Entries:
               <small>
                 <%= current_user.dishes_for(event).map {|entry| link_to entry.name, edit_event_entry_path(event, entry) }.join(', ').html_safe %>
               </small>

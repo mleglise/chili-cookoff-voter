@@ -9,8 +9,21 @@
         <div class="panel-body">
           <% cat.entries.each do |entry| %>
             <div class="entry-for-rating">
-              <strong><%= entry.name %></strong><br>
+              <span class="entry-name"><%= entry.name %></span>
               by <%= entry.owner.name %><br>
+              <% if entry.description.present? %>
+                <p><%= entry.description %></p>
+              <% end %>
+              <% if entry.spice_level.present? %>
+                Spice Level: <span class="badge"><%= entry.spice_level %></span><br>
+              <% end %>
+              <% if entry.ingredients.present? || entry.has_meat? %>
+                Ingredients:
+                <% if entry.has_meat? %>
+                  <span class="text-danger">MEAT</span>.
+                <% end %>
+                <%= entry.ingredients %><br>
+              <% end %>
               <div class="rateit-container">
                 <div class="rateit bigstars" data-entryid="<%= entry.id %>" data-rateit-value="<%= current_user.rating_for(entry).try(:score) %>" data-rateit-starwidth="32" data-rateit-starheight="32"></div>
                 <div class="rateit-status"></div>
