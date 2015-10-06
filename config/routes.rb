@@ -6,6 +6,10 @@ ChiliCookoffVoter::Application.routes.draw do
     resources :attendances
     resources :categories
     resources :entries
+
+    member do
+      get :results
+    end
   end
   resources :ratings
 

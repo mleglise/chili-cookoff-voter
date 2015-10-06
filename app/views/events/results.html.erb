@@ -1,0 +1,27 @@
+<h1>Results: <small><%= @event.title %></small></h1>
+
+<div class="row">
+  <% @event.categories.each do |cat| %>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title"><%= cat.name.gsub('Best ', '') %></h4>
+        </div>
+        <div class="panel-body">
+          <% cat.entries.each do |entry| %>
+            <div class="entry-results">
+              <strong><%= entry.name %></strong>
+              <span class="text-primary"><%= entry.avg_score %></span><br>
+              by <%= entry.owner.name %><br>
+              <ul>
+                <% entry.ratings.each do |rating| %>
+                  <li><%= rating.user.name %>: <%= rating.score %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
