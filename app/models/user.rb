@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :attendances
   has_many :events, through: :attendances
   has_many :entries, foreign_key: :owner_id, inverse_of: :owner
+  has_many :ratings
 
   # Commented out because not working in Rails 4
   # attr_accessible :role_ids, :as => :admin
@@ -27,6 +28,10 @@ class User < ActiveRecord::Base
 
   def dishes_for(event)
     entries.where(event: event)
+  end
+
+  def rating_for(entry)
+    ratings.find_by(entry: entry)
   end
 
 end

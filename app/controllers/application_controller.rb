@@ -31,7 +31,10 @@ class ApplicationController < ActionController::Base
 
     def authenticate_user!
       if !current_user
-        redirect_to signin_url, :alert => 'You need to sign in first.'
+        respond_to do |format|
+          format.html { redirect_to signin_url, :alert => 'You need to sign in first.' }
+          format.json { render text: 'Not Logged In', status: :forbidden }
+        end
       end
     end
 

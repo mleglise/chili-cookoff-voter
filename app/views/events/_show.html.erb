@@ -38,6 +38,8 @@
                 <% cat.entries.each do |entry| %>
                   <strong><%= entry.name %></strong><br>
                   by <%= entry.owner.name %>
+                  <div class="rateit" data-entryid="<%= entry.id %>" data-rateit-value="<%= current_user.rating_for(entry).try(:score) %>"></div>
+                  <div class="rateit-status"></div>
                 <% end %>
               </div>
             </div>

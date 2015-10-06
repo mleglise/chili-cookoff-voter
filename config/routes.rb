@@ -6,8 +6,8 @@ ChiliCookoffVoter::Application.routes.draw do
     resources :attendances
     resources :categories
     resources :entries
-    resources :ratings
   end
+  resources :ratings
 
   resources :users, :only => [:index, :show, :edit, :update ]
   get '/auth/:provider/callback' => 'sessions#create'
