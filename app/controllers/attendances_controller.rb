@@ -33,7 +33,11 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.save
-        format.html { redirect_to @event, notice: 'Your officially here!' }
+        if @attendance.chef?
+          format.html { redirect_to new_event_entry_path(@event), notice: 'What did you bring?' }
+        else
+          format.html { redirect_to @event, notice: 'Start Eating!' }
+        end
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { redirect_to @event }

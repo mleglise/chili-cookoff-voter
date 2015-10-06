@@ -6,4 +6,8 @@ class Attendance < ActiveRecord::Base
   belongs_to :event
 
   validates_uniqueness_of :user_id, scope: :event_id
+
+  def chef?
+    guest_type == 'chef'
+  end
 end

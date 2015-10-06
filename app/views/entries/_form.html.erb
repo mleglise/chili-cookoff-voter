@@ -15,6 +15,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-success' %>
+    <%= f.button :submit, class: 'btn btn-block btn-lg btn-success' %>
+    <%= link_to 'Cancel', event_path(@event), class: 'btn btn-block btn-lg btn-default' %>
   </div>
 <% end %>

@@ -15,7 +15,7 @@
               by <%= entry.owner.name %><br>
               <ul>
                 <% entry.ratings.each do |rating| %>
-                  <li><%= rating.user.name %>: <%= rating.score %></li>
+                  <li><%= rating.user.name %> (<%= rating.user.email %>): <%= rating.score %></li>
                 <% end %>
               </ul>
             </div>
