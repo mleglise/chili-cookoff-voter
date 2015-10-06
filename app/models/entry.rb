@@ -8,11 +8,15 @@ class Entry < ActiveRecord::Base
 
   validates_presence_of :event, :name, :category
 
+  def valid_ratings
+    ratings.where('score IS NOT NULL')
+  end
+
   def total_score
-    ratings.sum(:score)
+    valid_ratings.sum(:score)
   end
 
   def avg_score
-    total_score / ratings.count rescue 0
+    total_score / valid_ratings.count rescue 0
   end
 end

@@ -22,6 +22,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def destroy_all_votes
+    attendances.destroy_all
+    entries.destroy_all
+    ratings.destroy_all
+  end
+
   def guest_type_for(event)
     attendances.where(event: event).first.try(:guest_type)
   end

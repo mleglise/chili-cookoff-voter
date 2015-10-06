@@ -1,0 +1,24 @@
+<h2>Eat Now. Rank as you go.</h2>
+<div class="row">
+  <% event.categories.each do |cat| %>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title"><%= cat.name.gsub('Best ', '') %></h4>
+        </div>
+        <div class="panel-body">
+          <% cat.entries.each do |entry| %>
+            <div class="entry-for-rating">
+              <strong><%= entry.name %></strong><br>
+              by <%= entry.owner.name %><br>
+              <div class="rateit-container">
+                <div class="rateit bigstars" data-entryid="<%= entry.id %>" data-rateit-value="<%= current_user.rating_for(entry).try(:score) %>" data-rateit-starwidth="32" data-rateit-starheight="32"></div>
+                <div class="rateit-status"></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
