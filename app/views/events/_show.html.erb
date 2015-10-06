@@ -36,10 +36,14 @@
               </div>
               <div class="panel-body">
                 <% cat.entries.each do |entry| %>
-                  <strong><%= entry.name %></strong><br>
-                  by <%= entry.owner.name %>
-                  <div class="rateit" data-entryid="<%= entry.id %>" data-rateit-value="<%= current_user.rating_for(entry).try(:score) %>"></div>
-                  <div class="rateit-status"></div>
+                  <div class="entry-for-rating">
+                    <strong><%= entry.name %></strong><br>
+                    by <%= entry.owner.name %><br>
+                    <div class="rateit-container">
+                      <div class="rateit bigstars" data-entryid="<%= entry.id %>" data-rateit-value="<%= current_user.rating_for(entry).try(:score) %>" data-rateit-starwidth="32" data-rateit-starheight="32"></div>
+                      <div class="rateit-status"></div>
+                    </div>
+                  </div>
                 <% end %>
               </div>
             </div>
