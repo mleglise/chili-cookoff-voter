@@ -42,4 +42,6 @@
 </div>
 
 <h2 class="text-center">All Done?</h2>
-<a href="/" class="btn btn-block btn-lg btn-success">I'm Stuffed</a>
+<%= form_tag all_done_event_path(event) do %>
+  <%= submit_tag "I'm Stuffed", class: "btn btn-block btn-lg btn-success" %>
+<% end %>

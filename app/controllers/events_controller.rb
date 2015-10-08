@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :results]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :results, :all_done, :success]
 
   # GET /events
   # GET /events.json
@@ -64,6 +64,15 @@ class EventsController < ApplicationController
   end
 
   def results
+  end
+
+  # POST /events/1/all_done
+  def all_done
+    redirect_to success_event_path(@event)
+  end
+
+  # GET /events/1/success
+  def success
   end
 
   private

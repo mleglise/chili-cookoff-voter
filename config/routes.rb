@@ -9,6 +9,8 @@ ChiliCookoffVoter::Application.routes.draw do
 
     member do
       get :results
+      post :all_done
+      get :success
     end
   end
   resources :ratings

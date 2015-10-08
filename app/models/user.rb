@@ -40,4 +40,11 @@ class User < ActiveRecord::Base
     ratings.find_by(entry: entry)
   end
 
+  def success_pic
+    all_images = Dir[Rails.root.join('app/assets/images/success/*.gif')]
+    all_images.map! {|img_path| img_path.gsub(/.*\//,"") }
+    which_img = self.id % all_images.length
+    'success/' + all_images[which_img]
+  end
+
 end
