@@ -2,6 +2,10 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event
 
+  def index
+    @categories = @event.categories
+  end
+
   def new
     @category = Category.new(event: @event)
   end

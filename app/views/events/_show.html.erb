@@ -37,29 +37,14 @@
       <!-- Logged in, but not yet Attending -->
       <%= render partial: 'events/start_attendance', locals: { event: event } %>
     <% end %>
-
-    <% if can? :edit, event %>
-      <div class="well" style="margin-top: 20px">
-        <% if event.categories.present? %>
-          <h4 style="margin-top: 0">Admin: Manage Categories</h4>
-          <ul>
-            <% event.categories.each do |cat| %>
-              <li><%= link_to cat.name, edit_event_category_path(event, cat) %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          <h2>No Categories Found!</h2>
-        <% end %>
-        <%= link_to 'Add a Category', new_event_category_path(event), class: 'btn btn-default' %>
-      </div>
-    <% end %>
   </div>
 
   <% if can? :edit, event %>
     <div class="col-sm-3">
       <div class="well">
         <%= link_to 'View Results', results_event_path(event) %> |
-        <%= link_to 'Edit', edit_event_path(event) %>
+        <%= link_to 'Edit', edit_event_path(event) %> |
+        <%= link_to 'Categories', event_categories_path(event) %>
       </div>
       <p class="help-block">
         User ID: <strong><%= current_user.try(:id) %></strong><br>
