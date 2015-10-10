@@ -3,9 +3,24 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
+
+    # Manager roles can do anything.
     if user.has_role? :admin
       can :manage, :all
     end
+
+    # Any user can read any event.
+    can :read, Event
+    can :read, Entry
+
+    # Users can manage events they own.
+    can :manage, Event do |event|
+      event.owner == user
+    end
+    can :manage, Entry do |entry|
+      entry.owner == user
+    end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

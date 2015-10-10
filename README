@@ -5,7 +5,6 @@ To Do
 -----
 
 * Need option to invalidate user's attendance/votes
-* Lock down access to edit events
 
 
 This application was generated with the rails_apps_composer gem:
