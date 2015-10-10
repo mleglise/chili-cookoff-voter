@@ -12,7 +12,10 @@ class AttendancesController < ApplicationController
   # GET /attendances/1
   # GET /attendances/1.json
   def show
-    redirect_to @event and return
+    # Event admin can see this page. All others get redirected to the event.
+    unless can? :edit, @event
+      redirect_to @event and return
+    end
   end
 
   # GET /attendances/new

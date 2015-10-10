@@ -67,12 +67,15 @@
       </p>
   
       <h3>Guest List</h3>
-      <% event.guests.each do |guest| %>
-        <% if event.has_chef?(guest) %>
-          <i class="fa fa-coffee"></i>
+      <ul>
+        <% event.attendances.each do |attendance| %>
+          <li>
+            <% if attendance.chef? %><i class="fa fa-coffee"></i><% end %>
+            <%= link_to attendance.guest.name, event_attendance_path(event, attendance) %>
+            <% if attendance.completed? %><i class="fa fa-check text-success"></i><% end %>
+          </li>
         <% end %>
-        <%= guest.name %>
-      <% end %>
+      </ul>
     <% end %>
   </div>
 </div>

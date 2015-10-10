@@ -1,24 +1,48 @@
-<p id="notice"><%= notice %></p>
+<h3><%= link_to @event.title, @event %></h3>
 
-<p>
-  <strong>User:</strong>
-  <%= @attendance.user_id %>
-</p>
+<div class="row">
+  <div class="col-sm-6">
+    <p>
+      <strong>User:</strong>
+      <%= @attendance.guest.name %>
+      (<%= @attendance.guest.email %>)
+    </p>
 
-<p>
-  <strong>Event:</strong>
-  <%= @attendance.event_id %>
-</p>
+    <p>
+      <strong>Guest type:</strong>
+      <%= @attendance.guest_type %>
+    </p>
 
-<p>
-  <strong>Guest type:</strong>
-  <%= @attendance.guest_type %>
-</p>
+    <p>
+      <strong>Created:</strong>
+      <%= @attendance.created_at %>
+    </p>
 
-<p>
-  <strong>Approved at:</strong>
-  <%= @attendance.approved_at %>
-</p>
+    <p>
+      <strong>Updated:</strong>
+      <%= @attendance.updated_at %>
+    </p>
 
-<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
-<%= link_to 'Back', attendances_path %>
+    <p>
+      <strong>Approved:</strong>
+      <%= @attendance.approved_at %>
+    </p>
+
+    <p>
+      <strong>Completed:</strong>
+      <%= @attendance.completed_at %>
+    </p>
+  </div>
+  <div class="col-sm-6">
+    <h4>Ratings</h4>
+    <ul>
+      <% @attendance.guest.ratings.each do |rating| %>
+        <% next if rating.score.blank? %>
+        <li>
+          <strong><%= rating.score %></strong>
+          <%= rating.entry.name %> (by <%= rating.entry.owner.name %>)
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
