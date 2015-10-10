@@ -7,6 +7,7 @@ class Entry < ActiveRecord::Base
   has_many :ratings
 
   validates_presence_of :event, :name, :category
+  validates_uniqueness_of :name, scope: :event_id
 
   def valid_ratings
     ratings.where('score IS NOT NULL')
