@@ -28,4 +28,15 @@ class Event < ActiveRecord::Base
   def has_chef?(user)
     has_attendee?(user) && attendances.exists?(user_id: user.id, guest_type: 'chef')
   end
+
+  # Returns true if we are DURING the polling period.
+  def polls_open?
+    Time.now > polls_open && Time.now < polls_close
+  end
+
+  # Returns true if we have passed the closing of the event.
+  def polls_closed?
+    Time.now > polls_close
+  end
+
 end
