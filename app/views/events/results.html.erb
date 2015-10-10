@@ -15,7 +15,13 @@
               by <%= entry.owner.name %><br>
               <ul>
                 <% entry.ratings.each do |rating| %>
-                  <li><%= rating.user.name %> (<%= rating.user.email %>): <%= rating.score %></li>
+                  <li>
+                    <%= rating.user.name %> (<%= rating.user.email %>):
+                    <%= rating.score %>
+                    <% if rating.user.attendance_for(@event).completed? %>
+                      <i class="fa fa-check text-success"></i>
+                    <% end %>
+                  </li>
                 <% end %>
               </ul>
             </div>

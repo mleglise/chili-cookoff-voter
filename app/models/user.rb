@@ -28,8 +28,12 @@ class User < ActiveRecord::Base
     ratings.destroy_all
   end
 
+  def attendance_for(event)
+    attendances.find_by(event: event)
+  end
+
   def guest_type_for(event)
-    attendances.where(event: event).first.try(:guest_type)
+    attendance_for(event).try(:guest_type)
   end
 
   def dishes_for(event)

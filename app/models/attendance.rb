@@ -10,4 +10,13 @@ class Attendance < ActiveRecord::Base
   def chef?
     guest_type == 'chef'
   end
+
+  def completed?
+    completed_at.present?
+  end
+
+  def all_done
+    self.completed_at = Time.now
+    save
+  end
 end

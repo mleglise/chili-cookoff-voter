@@ -68,6 +68,7 @@ class EventsController < ApplicationController
 
   # POST /events/1/all_done
   def all_done
+    current_user.attendance_for(@event).all_done
     redirect_to success_event_path(@event)
   end
 
