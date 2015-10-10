@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.rateit
+//= require countdown
 //= require_tree .

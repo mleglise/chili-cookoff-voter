@@ -22,7 +22,16 @@
         <% end %>
       <% end %>
 
-      <%= render partial: 'events/show_entries_to_rank', locals: { event: event } %>
+      <% if event.polls_open? %>
+        <div id="countdown_alert" class="alert alert-warning text-center" style="font-size:20px; display:none">
+          Polls close in
+          <span id="countdown_text" data-endtime="<%= event.polls_close.iso8601 %>"></span>
+        </div>
+
+        <%= render partial: 'events/show_entries_to_rank', locals: { event: event } %>
+      <% else %>
+        <h2 class="text-center">Polls are not open yet</h2>
+      <% end %>
 
     <% else %>
       <!-- Logged in, but not yet Attending -->
