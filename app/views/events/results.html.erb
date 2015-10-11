@@ -14,7 +14,7 @@
               <strong><%= entry.name %></strong>
               <span class="text-primary"><%= entry.avg_score %></span><br>
               by <%= entry.owner.name %><br>
-              <ul>
+              <ul <% if params[:hide] == 'true' %>style="display: none"<% end %>>
                 <% entry.ratings.each do |rating| %>
                   <li>
                     <%= rating.user.name %> (<%= rating.user.email %>):
