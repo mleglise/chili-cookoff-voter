@@ -8,7 +8,7 @@
         <%= f.check_box :has_meat %> Is there MEAT in it?
       </label>
     </div>
-    <%= f.association :category %>
+    <%= f.association :category, collection: @event.categories %>
     <%= f.input :spice_level, collection: 1..10, hint: 'Use the Thai spice range 1 to 10.' %>
     <%= f.input :ingredients, hint: 'What types of meat? Any allergens? (cinnamon, eggs, gluten, nuts, soy, etc)' %>
     <%= f.input :description, hint: '(optional) Anything cool we should know about your dish?' %>
