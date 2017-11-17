@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :results, :all_done, :success]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :awards, :results, :all_done, :success]
   authorize_resource except: [:all_done, :success]
 
   # GET /events
@@ -62,6 +62,9 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
+  end
+
+  def awards
   end
 
   def results

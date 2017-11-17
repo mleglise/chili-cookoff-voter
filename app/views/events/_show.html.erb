@@ -41,9 +41,10 @@
   <% if can? :edit, event %>
     <div class="col-sm-3">
       <div class="well">
-        <%= link_to 'View Results', results_event_path(event) %> |
         <%= link_to 'Edit', edit_event_path(event) %> |
-        <%= link_to 'Categories', event_categories_path(event) %>
+        <%= link_to 'Categories', event_categories_path(event) %><br>
+        <%= link_to 'Results', results_event_path(event) %> |
+        <%= link_to 'Awards Script', awards_event_path(event) %>
       </div>
       <p class="help-block">
         User ID: <strong><%= current_user.try(:id) %></strong><br>
