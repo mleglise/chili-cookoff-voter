@@ -15,8 +15,7 @@
         <div class="panel-body">
           <% cat.entries.each do |entry| %>
             <div class="entry-for-rating">
-              <span class="entry-name"><%= entry.name %></span>
-              by <%= entry.owner.name %><br>
+              <span class="entry-name"><%= entry.name %></span><br>
               <% if entry.description.present? %>
                 <p><%= entry.description %></p>
               <% end %>
