@@ -6,7 +6,6 @@
         <h4>Results will be announced soon.</h4>
       </div>
     <% elsif event.has_attendee?(current_user) %>
-      <h6><%= event.title %></h6>
       <% if event.has_chef?(current_user) %>
         <% if current_user.dishes_for(event) %>
           <div class="well">

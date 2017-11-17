@@ -3,7 +3,19 @@
 
 // override for the 'Home' navigation link
 .navbar-brand {
-  font-size: inherit; }
+  font-size: inherit;
+
+  @media (max-width: 768px) {
+    display: inline-block;
+    position: absolute;
+    padding-right: 60px;
+    width: 100%;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
 
 .navbar-inverse {
   border-radius: 0;

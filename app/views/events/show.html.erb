@@ -1,1 +1,9 @@
+<% content_for :title do %>
+  <%= @event.title %>
+<% end %>
+
+<% content_for :nav_title do %>
+  <%= link_to @event.title, event_path(@event), :class => 'navbar-brand' %>
+<% end %>
+
 <%= render partial: 'events/show', locals: { event: @event } %>

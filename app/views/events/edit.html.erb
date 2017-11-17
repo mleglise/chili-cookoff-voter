@@ -1,6 +1,9 @@
+<% content_for :title do %>
+  Edit: <%= @event.title %>
+<% end %>
+
 <h1>Editing event</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Cancel', @event, class: 'btn btn-default' %>
