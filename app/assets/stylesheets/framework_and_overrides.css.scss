@@ -17,6 +17,35 @@
   }
 }
 
+.navbar-toggle {
+  z-index: 100;
+}
+
 .navbar-inverse {
   border-radius: 0;
+}
+
+
+
+// Form styling
+
+.control-label {
+  font-size: 1.5em;
+
+  abbr {
+    border: none;
+    text-decoration: none;
+  }
+}
+
+span.radio label {
+  font-size: 18px;
+  height: 34px;
+  padding-left: 30px;
+}
+
+span.radio input.radio_buttons {
+  border: none;
+  box-shadow: none;
+  margin: -4px 0 0 -30px;
 }
