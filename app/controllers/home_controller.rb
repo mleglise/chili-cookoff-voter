@@ -6,4 +6,10 @@ class HomeController < ApplicationController
 
     @event = Event.newest.first
   end
+
+  def privacy
+  end
+
+  def terms
+  end
 end

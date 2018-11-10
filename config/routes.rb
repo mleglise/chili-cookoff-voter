@@ -1,6 +1,8 @@
 ChiliCookoffVoter::Application.routes.draw do
 
   root :to => "home#index"
+  get '/privacy' => 'home#privacy'
+  get '/terms' => 'home#terms'
 
   resources :events do
     resources :attendances
